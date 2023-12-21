@@ -1,0 +1,27 @@
+
+name: fallback_on_general_fail
+trigger:
+    type: timer
+    interval: "20s"
+notifiers:
+    - name: printer
+      type: print
+    - name: telegram
+      type: telegram
+      token: ABCD
+      chat_id: 1234
+steps:
+- notify:
+    message: telegram saying Hi
+    notifier: telegram
+    upon_failure:
+    - notify:
+        message: caught this issue, we'll go on
+        notifier: printer
+- notify:
+    message: this will fail but the issue won't be addressed here
+    notifier: telegram
+upon_failure:
+- notify:
+    message: the flow failed, sorry
+    notifier: printer

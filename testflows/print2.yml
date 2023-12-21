@@ -1,0 +1,24 @@
+---
+name: printer2
+trigger:
+    type: timer
+    interval: "1s"
+notifiers:
+    - name: printer
+      type: print
+steps:
+- notify:
+    message: printer2 saying Hi
+    notifier: printer
+---
+name: printer3
+trigger:
+    type: timer
+    interval: "1.5s"
+notifiers:
+    - name: printer
+      type: print
+steps:
+- notify:
+    message: printer3 saying Hi
+    notifier: printer
